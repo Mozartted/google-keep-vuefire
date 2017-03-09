@@ -8,6 +8,7 @@ var firebase = require('firebase/app')
 require('firebase/auth')
 require('firebase/database')
 
+// setting up firebase configurations
 var config = {
     apiKey: "AIzaSyCng5VSjWXjCec_elvxEjw6ijYkq0ykjMQ",
     authDomain: "gkeep-vuefire-596be.firebaseapp.com",
@@ -17,12 +18,14 @@ var config = {
   }
 
 export default{
+	// setting up views data attribute
 	data:function(){
 		return {
        		notes: []
      	}
 	},
 	ready:function(){
+
 		 var appBase = firebase.initializeApp(config)
 		let db = appBase.database()
 
