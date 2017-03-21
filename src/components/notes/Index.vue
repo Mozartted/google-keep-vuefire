@@ -1,12 +1,16 @@
 <template>
-
+  <ol>
+    <li v-for="note in notes">
+      <pre>
+        {{note | json}}
+      </pre>
+    </li>
+  </ol>
 </template>
 
 <script>
 
-var firebase = require('firebase/app')
-require('firebase/auth')
-require('firebase/database')
+import * as firebase from "firebase"
 
 // setting up firebase configurations
 var config = {
@@ -19,20 +23,18 @@ var config = {
 
 export default{
 	// setting up views data attribute
-	data:function(){
+	data () {
 		return {
        		notes: []
      	}
 	},
-	ready:function(){
-
-		 var appBase = firebase.initializeApp(config)
+	mounted () {
+		let appBase = firebase.initializeApp(config)
 		let db = appBase.database()
-
-		db.ref().child('notes').set([{title: 'Hello World' ,content: 'Lorem ipsum'}])
-		db.ref().child('notes').on('value', (snapshot) => {
+		db.ref('notes').on('value',(snapshot) => {
   			let note = snapshot.val()
        		this.notes.unshift(note)
+          console.log(note)
 		})
 	}
 }

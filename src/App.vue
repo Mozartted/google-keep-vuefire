@@ -1,13 +1,15 @@
 <template>
   <div id="app">
-    <img src="./assets/logo.png">
-    <router-view></router-view>
+    <notes></notes>
   </div>
 </template>
 
 <script>
+import Notes from './components/notes/Index'
 export default {
-  name: 'app'
+  components: {
+    Notes
+  }
 }
 </script>
 
