@@ -1,17 +1,17 @@
 <template>
-  <ol>
-    <li v-for="note in notes">
-      <pre>
-        {{note | json}}
-      </pre>
-    </li>
-  </ol>
+  <div class="notes">
+    <note 
+      v-for="note in notes"
+      :note="note"
+      >
+    </note>
+  </div>
 </template>
 
 <script>
 
 import * as firebase from "firebase"
-
+import Note from './Note'
 // setting up firebase configurations
 var config = {
     apiKey: "AIzaSyCng5VSjWXjCec_elvxEjw6ijYkq0ykjMQ",
