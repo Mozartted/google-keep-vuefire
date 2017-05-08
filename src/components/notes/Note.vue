@@ -5,6 +5,7 @@
   </div>
 </template>
 
+
 <script>
   export default {
     props: ['note']
@@ -33,3 +34,4 @@
     font-family: inherit;
   }
 </style>
+
