@@ -1,5 +1,4 @@
-// http://eslint.org/docs/user-guide/configuring
-
+/* eslint-disable eol-last */
 module.exports = {
   root: true,
   parser: 'babel-eslint',
@@ -37,7 +36,6 @@ module.exports = {
     "indent": 0,
     "no-mixed-spaces-and-tabs": 0,
     "no-tabs":0,
-    "no-trailing-spaces":0,
     "comma-spacing": 0,
     "object-curly-spacing": 0,
     "prefer-const": 0
