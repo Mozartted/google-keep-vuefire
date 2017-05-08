@@ -2,7 +2,7 @@
   <div class="notes">
     <note 
       v-for="note in notes"
-      :note="note"
+      v-bind:note="note"
       >
     </note>
   </div>
@@ -10,33 +10,28 @@
 
 <script>
 
-import * as firebase from "firebase"
+import FirebaseConf from "../../config/firebase.config"
 import Note from './Note'
-// setting up firebase configurations
-// var config = {
-//     apiKey: "AIzaSyCng5VSjWXjCec_elvxEjw6ijYkq0ykjMQ",
-//     authDomain: "gkeep-vuefire-596be.firebaseapp.com",
-//     databaseURL: "https://gkeep-vuefire-596be.firebaseio.com",
-//     storageBucket: "gkeep-vuefire-596be.appspot.com",
-//     messagingSenderId: "173888201017"
-//   }
 
 export default{
 	// setting up views data attribute
-	// data () {
-	// 	return {
- //       		notes: []
- //     	}
-	// },
-	// mounted () {
-	// 	let appBase = firebase.initializeApp(config)
-	// 	let db = appBase.database()
-	// 	db.ref('notes').on('value',(snapshot) => {
- //  			let note = snapshot.val()
- //       		this.notes.unshift(note)
- //          console.log(note)
-	// 	})
-	// }
+	data () {
+		return {
+       		notes: []
+     	}
+	},
+	mounted () {
+		FirebaseConf.db.ref('notes').on('value',(snapshot) => {
+  			let note = snapshot.val()
+        for (var key in note) {
+          if (note.hasOwnProperty(key)) {
+            this.notes.unshift(note[key])
+          }
+        }
+		})
+
+    console.log(this.notes)
+	},
   components: {
     Note
   }

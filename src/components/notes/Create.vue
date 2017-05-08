@@ -7,17 +7,7 @@
   </form>
 </template>
 <script>
-	import * as firebase from 'firebase'
-	let config = {
-    apiKey: "AIzaSyCng5VSjWXjCec_elvxEjw6ijYkq0ykjMQ",
-    authDomain: "gkeep-vuefire-596be.firebaseapp.com",
-    databaseURL: "https://gkeep-vuefire-596be.firebaseio.com",
-    storageBucket: "gkeep-vuefire-596be.appspot.com",
-    messagingSenderId: "173888201017"
-  }
-
-  let appBase = firebase.initializeApp(config)
-		let db = appBase.database()
+	import FirebaseConf from '../../config/firebase.config'
 
 	export default{
 		data () {
@@ -29,7 +19,7 @@
 		methods: {
 			createNote () {
 				if (this.title.trim()||this.content.trim()) {
-					db.ref('notes').push({title: this.title,content: this.content},(res,err) => {
+					FirebaseConf.db.ref('notes').push({title: this.title,content: this.content},(res,err) => {
 						if (err) {
               				throw err
             			}
